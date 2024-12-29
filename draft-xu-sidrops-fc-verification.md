@@ -9,19 +9,19 @@ number:
 date:
 consensus: true
 v: 3
-area: AREA
-workgroup: WG Working Group
+area: ""
+workgroup: "SIDR Operations"
 # keyword:
 # - next generation
 # - unicorn
 # - sparkling distributed ledger
 venue:
-  #  group: WG
-  #  type: Working Group
-  #  mail: WG@example.com
-  #  arch: https://example.com/WG
-  github: "BasilGuo/fc-signed-object"
-  latest: "https://BasilGuo.github.io/fc-signed-object/draft-guo-fc-so.html"
+  group: "SIDR Operations"
+  type: ""
+  mail: "sidrops@ietf.org"
+  arch: "https://mailarchive.ietf.org/arch/browse/sidrops/"
+  github: "FCBGP/fc-verification"
+  latest: "https://FCBGP.github.io/fc-verification/draft-xu-sidrops-fc-verification.html"
 
 author:
   -
