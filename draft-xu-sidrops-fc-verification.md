@@ -19,11 +19,11 @@
 # Change the file extension to match the format (.xml for XML, etc...)
 #
 ###
-title: "TODO - Your title"
-abbrev: "TODO - Abbreviation"
-category: info
+title: "BGP AS_PATH Verification Based on Forwarding Commitment (FC) Objects"
+abbrev: "FC-based AS_PATH Verification"
+category: std
 
-docname: draft-todo-yourname-protocol-latest
+docname: draft-xu-sidrops-fc-verification-latest
 submissiontype: IETF  # also: "independent", "editorial", "IAB", or "IRTF"
 number:
 date:
@@ -31,23 +31,26 @@ consensus: true
 v: 3
 area: AREA
 workgroup: WG Working Group
-keyword:
- - next generation
- - unicorn
- - sparkling distributed ledger
+# keyword:
+# - next generation
+# - unicorn
+# - sparkling distributed ledger
 venue:
-  group: WG
-  type: Working Group
-  mail: WG@example.com
-  arch: https://example.com/WG
-  github: USER/REPO
-  latest: https://example.com/LATEST
+  #  group: WG
+  #  type: Working Group
+  #  mail: WG@example.com
+  #  arch: https://example.com/WG
+  github: "BasilGuo/fc-signed-object"
+  latest: "https://BasilGuo.github.io/fc-signed-object/draft-guo-fc-so.html"
 
 author:
- -
-    fullname: Your Name Here
-    organization: Your Organization Here
-    email: your.email@example.com
+  -
+      fullname: Ke Xu
+      org: Tsinghua University
+      city: Beijing
+      country: China
+      email: xuke@tsinghua.edu.cn
+
 
 normative:
 
