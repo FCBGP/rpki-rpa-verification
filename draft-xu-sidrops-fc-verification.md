@@ -33,20 +33,25 @@ author:
 
 
 normative:
+  I-D.guo-sidrops-fc-profile:
 
 informative:
 
 
 --- abstract
 
-TODO Abstract
+The Forwarding Commitment (FC) is an RPKI object that attests to the complete routing intents description which an Autonomous System (AS) would obey in Border Gateway Protocol (BGP) route propagation. This document specifies an FC-based AS Path Verification methodology to mitigate AS Path forgery and route leaks. This document also explains the various BGP security threats that FC can help address and provides operational considerations associated with FC deployment.
+
+
 
 
 --- middle
 
 # Introduction
 
-TODO Introduction
+The Forwarding Commitment (FC) {{I-D.guo-sidrops-fc-profile}} is a Resource Public Key Infrastructure (RPKI) object that attests to the complete routing intents description which an Autonomous System (AS) would obey in  Border Gateway Protocol (BGP) route propagation. This document specifies an FC-based AS Path Verification methodology to prevent AS-path forgery and route leaks.
+
+Typically, an AS-path forgery occurs when an offending AS illegitimately 
 
 
 # Conventions and Definitions
