@@ -48,8 +48,6 @@ author:
       city: Beijing
       country: China
       email: wangxiaoliang0623@foxmail.com
-  
-    
 
 normative:
   RFC4271:
