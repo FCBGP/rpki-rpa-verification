@@ -64,7 +64,7 @@ normative:
   I-D.ietf-sidrops-rpki-prefixlist:      # SPL profile
   I-D.ietf-sidrops-spl-verification:     # SPL verification
   I-D.geng-sidrops-asra-profile:         # ASRA profile
-  # I-D.geng-sidrops-asra-verification:    # ASRA verification
+  # I-D.sriram-sidrops-asra-verification:    # ASRA verification
 
 informative:
   RFC7908:
@@ -81,7 +81,7 @@ The Forwarding Commitment (FC) is an RPKI object that attests to the complete ro
 
 The Border Gateway Protocol (BGP) is vulnerable to route hijacks and route leaks {{RFC7908}}. Some existing BGP extensions can partially solve or alleviate these problems. Resource Public Key Infrastructure (RPKI) based route origin validation (RPKI-ROV) {{RFC6480}} {{RFC6811}} {{RFC9319}} {{RFC9582}} and Signed Prefix List-based Route Origin Verification (SPL-ROV) {{I-D.ietf-sidrops-rpki-prefixlist}} can be used to detect and filter accidental mis-originations. BGPsec is designed to provide security for the AS-path attribute in the BGP UPDATE message {{RFC8205}}. {{RFC9234}} and Autonomous System Provider Authorization (ASPA) {{I-D.ietf-sidrops-aspa-profile}} aim at detecting and mitigating accidental route leaks.
 
-However, there are still some issues that need to be addressed. ASPA is a genius mechanism to verify BGP AS-path attribute content, which only stores customer-to-provider information in RPKI. Autonomous System Relationship Authorization (ASRA) has listed several security problems with ASPA in {{Section 2 of I-D.ietf-sidrops-asra-profile}}. Though the validity of the ASPA/ASRA objects is verified, the relationship between two BGP neighbors cannot be attested. When two ASes announce mutually exclusive relationships, for example, AS A says AS B is its Provider and AS B says AS A is its Provider, no other ASes can verify their real relationships.
+However, there are still some issues that need to be addressed. ASPA is a genius mechanism to verify BGP AS-path attribute content, which only stores customer-to-provider information in RPKI. Autonomous System Relationship Authorization (ASRA) has listed several security problems with ASPA in {{Section 2 of I-D.geng-sidrops-asra-profile}}. Though the validity of the ASPA/ASRA objects is verified, the relationship between two BGP neighbors cannot be attested. When two ASes announce mutually exclusive relationships, for example, AS A says AS B is its Provider and AS B says AS A is its Provider, no other ASes can verify their real relationships.
 
 The Forwarding Commitment (FC) [I-D.guo-sidrops-fc-profile] is a Resource Public Key Infrastructure (RPKI) object that attests to the complete routing intents description an Autonomous System (AS) would obey in Border Gateway Protocol (BGP) route propagation.
 
