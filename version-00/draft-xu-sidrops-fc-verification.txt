@@ -5,11 +5,11 @@
 SIDR Operations                                                    K. Xu
 Internet-Draft                                       Tsinghua University
 Intended status: Standards Track                                S. Jiang
-Expires: 20 August 2025                                           Y. Guo
+Expires: 21 August 2025                                           Y. Guo
                                                           ZGC Laboratory
                                                                  X. Wang
                                                      Tsinghua University
-                                                        16 February 2025
+                                                        17 February 2025
 
 
   BGP AS_PATH Verification Based on Forwarding Commitment (FC) Objects
@@ -59,7 +59,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 August 2025.
+   This Internet-Draft will expire on 21 August 2025.
 
 Copyright Notice
 
@@ -151,7 +151,7 @@ Table of Contents
 
    *  *TotallyValid*: This is one of the verification results of using
       FC objects to verify AS_PATH.  This means the FCs of each AS in
-      AS_PATH are all with the 'roaASes' field.
+      AS_PATH are all with the 'originASes' field.
 
    *  *VFP*: Validated FC Payload (see Section 4).
 
@@ -169,10 +169,10 @@ Table of Contents
    within a single FC object.  However, due to the inherent complexity
    of routing intents, providing a comprehensive list can be
    challenging.  Consequently, it is RECOMMENDED to include routing
-   intents with the roaASes field designated as 'NONE' when the issuer
-   is unable to specify which routes will be propagated from
+   intents with the originASes field designated as 'NONE' when the
+   issuer is unable to specify which routes will be propagated from
    previousASes to nexthopASes.  It may have a few of these
-   routingIntents with the roaASes field set as 'NONE'.
+   routingIntents with the originASes field set as 'NONE'.
 
    In general, there exists a singular valid FC object corresponding to
    a specific asID.  However, in instances where multiple valid FC
@@ -183,10 +183,10 @@ Table of Contents
    compliant router.  Such an object is referred to as the Validated FC
    Payload (VFP) for the asID.
 
-   Except for the empty roaASes, there would also be empty previousASes
-   and nexthopASes in a routing intent.  It is NOT RECOMMENDED to
-   describe routing intent without nexthopASes as this does not help
-   verify BGP AS_PATH.
+   Except for the empty originASes, there would also be empty
+   previousASes and nexthopASes in a routing intent.  It is NOT
+   RECOMMENDED to describe routing intent without nexthopASes as this
+   does not help verify BGP AS_PATH.
 
    It is REQUIRED at least one routing intent description in an FC
    object.  Otherwise, the empty FC object means no routes can be
@@ -212,11 +212,11 @@ Table of Contents
 
    2.  If all ASes on the AS-path have their FCs with the BGP AS-path
        conforming to all ASes routing intents and the route is also
-       specified in the roaASes field, the verification result is
+       specified in the originASes field, the verification result is
        TotallyValid;
 
-   3.  Else, if the roaASes field is missing but all ASes on the AS-path
-       have their FCs with the BGP AS-path conforming to all ASes
+   3.  Else, if the originASes field is missing but all ASes on the AS-
+       path have their FCs with the BGP AS-path conforming to all ASes
        routing intents, the verification result is Valid;
 
    4.  Else, if none of the AS on the AS path has its FC, the
