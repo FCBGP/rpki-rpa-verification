@@ -98,18 +98,18 @@ The definitions and semantics of Forwarding Commitment (FC) provided in [I-D.guo
 
 - **Route is ineligible**: The term has the same meaning as in {{RFC4271}}, i.e., "route is ineligible to be installed in Loc-RIB and will be excluded from the next phase of route selection."
 - **AS-path**: This term defines a sequence of ASes listed in the BGP UPDATE AS_PATH or AS4_PATH attribute. In this document, the terms AS-path, AS_PATH, and AS4_PATH are interchangeably used.
-- **TotallyValid**: This is one of the verification results of using FC objects to verify AS_PATH. This means the FCs of each AS in AS_PATH are all with the 'roaASes' field.
+- **TotallyValid**: This is one of the verification results of using FC objects to verify AS_PATH. This means the FCs of each AS in AS_PATH are all with the 'originASes' field.
 - **VFP**: Validated FC Payload (see {{ForwardingCommitment}}).
 
 # Forwarding Commitment (FC) {#ForwardingCommitment}
 
 Forwarding Commitment (FC) objects encapsulate the routing intent description of an Autonomous System (AS). Unlike most RPKI-signed objects, FC objects possess a distinct design regarding verification results. Since FC objects reference Route Origin Authorizations (ROAs) within their content, the verification outcomes for FC are categorized into four distinct states: TotallyValid, Valid, Invalid, and Unknown.
 
-It is RECOMMENDED that all routing intents be explicitly enumerated within a single FC object. However, due to the inherent complexity of routing intents, providing a comprehensive list can be challenging. Consequently, it is RECOMMENDED to include routing intents with the roaASes field designated as 'NONE' when the issuer is unable to specify which routes will be propagated from previousASes to nexthopASes. It may have a few of these routingIntents with the roaASes field set as 'NONE'.
+It is RECOMMENDED that all routing intents be explicitly enumerated within a single FC object. However, due to the inherent complexity of routing intents, providing a comprehensive list can be challenging. Consequently, it is RECOMMENDED to include routing intents with the originASes field designated as 'NONE' when the issuer is unable to specify which routes will be propagated from previousASes to nexthopASes. It may have a few of these routingIntents with the originASes field set as 'NONE'.
 
 In general, there exists a singular valid FC object corresponding to a specific asID. However, in instances where multiple valid FC objects containing the same asID are present, the union of the resulting routingIntent members constitutes the comprehensive set of members. This complete set, which may arise from either a single or multiple FCs, is locally maintained by a Relying Party (RP) or a compliant router. Such an object is referred to as the Validated FC Payload (VFP) for the asID.
 
-Except for the empty roaASes, there would also be empty previousASes and nexthopASes in a routing intent. It is NOT RECOMMENDED to describe routing intent without nexthopASes as this does not help verify BGP AS_PATH.
+Except for the empty originASes, there would also be empty previousASes and nexthopASes in a routing intent. It is NOT RECOMMENDED to describe routing intent without nexthopASes as this does not help verify BGP AS_PATH.
 
 It is REQUIRED at least one routing intent description in an FC object. Otherwise, the empty FC object means no routes can be transited or transformed from this asID.
 
@@ -124,8 +124,8 @@ An eBGP router that conforms to this specification MUST implement FC-based AS_PA
 For each received BGP route:
 
 1. Query all the FCs that are issued by the ASes that are in the AS-path attribute;
-2. If all ASes on the AS-path have their FCs with the BGP AS-path conforming to all ASes routing intents and the route is also specified in the roaASes field, the verification result is TotallyValid;
-3. Else, if the roaASes field is missing but all ASes on the AS-path have their FCs with the BGP AS-path conforming to all ASes routing intents, the verification result is Valid;
+2. If all ASes on the AS-path have their FCs with the BGP AS-path conforming to all ASes routing intents and the route is also specified in the originASes field, the verification result is TotallyValid;
+3. Else, if the originASes field is missing but all ASes on the AS-path have their FCs with the BGP AS-path conforming to all ASes routing intents, the verification result is Valid;
 4. Else, if none of the AS on the AS path has its FC, the verification result is Unknown;
 5. Else, if some of the ASes on the AS path have their FCs but others ASes do not have their FCs, the verification result is Invalid.
 
