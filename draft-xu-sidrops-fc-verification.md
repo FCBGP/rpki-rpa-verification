@@ -56,7 +56,7 @@ normative:
   RFC8205: # BGPsec
   RFC9582:
   RFC9234:
-  # I-D.guo-sidrops-fc-profile:
+  I-D.guo-sidrops-fc-profile:
   I-D.ietf-sidrops-aspa-profile:         # ASPA profile
   # I-D.ietf-sidrops-aspa-verification:    # ASPA verification
   I-D.ietf-sidrops-rpki-prefixlist:      # SPL profile
