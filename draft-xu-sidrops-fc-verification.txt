@@ -275,6 +275,13 @@ Table of Contents
               <https://datatracker.ietf.org/doc/html/draft-geng-sidrops-
               asra-profile-00>.
 
+   [I-D.guo-sidrops-fc-profile]
+              Guo, Y., Wang, X., Xu, K., liu, Z., and L. Qi, "A Profile
+              for Forwarding Commitments (FCs)", Work in Progress,
+              Internet-Draft, draft-guo-sidrops-fc-profile-00, 18
+              February 2025, <https://datatracker.ietf.org/doc/html/
+              draft-guo-sidrops-fc-profile-00>.
+
    [I-D.ietf-sidrops-aspa-profile]
               Azimov, A., Uskov, E., Bush, R., Snijders, J., Housley,
               R., and B. Maddison, "A Profile for Autonomous System
