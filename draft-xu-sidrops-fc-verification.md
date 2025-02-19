@@ -81,7 +81,7 @@ The Border Gateway Protocol (BGP) is vulnerable to route hijacks and route leaks
 
 However, there are still some issues that need to be addressed. ASPA is a genius mechanism to verify BGP AS-path attribute content, which only stores customer-to-provider information in RPKI. Autonomous System Relationship Authorization (ASRA) has listed several security problems with ASPA in {{Section 2 of I-D.geng-sidrops-asra-profile}}. Though the validity of the ASPA/ASRA objects is verified, the relationship between two BGP neighbors cannot be attested. When two ASes announce mutually exclusive relationships, for example, AS A says AS B is its Provider and AS B says AS A is its Provider, no other ASes can verify their real relationships.
 
-The Forwarding Commitment (FC) [I-D.guo-sidrops-fc-profile] is a Resource Public Key Infrastructure (RPKI) object that attests to the complete routing intents description an Autonomous System (AS) would obey in Border Gateway Protocol (BGP) route propagation.
+The Forwarding Commitment (FC) {{I-D.guo-sidrops-fc-profile}} is a Resource Public Key Infrastructure (RPKI) object that attests to the complete routing intents description an Autonomous System (AS) would obey in Border Gateway Protocol (BGP) route propagation.
 
 
 This document specifies an FC-based AS Path Verification methodology to prevent AS path forgery in the BGP AS-path attribute of advertised routes. FC-based AS_PATH verification also detects and mitigates route leaks.
@@ -94,7 +94,7 @@ This document specifies an FC-based AS Path Verification methodology to prevent 
 
 # Definition of Commonly Used Terms {#DefinitionOfCommonlyUsedTerms}
 
-The definitions and semantics of Forwarding Commitment (FC) provided in [I-D.guo-sidrops-fc-profile] are applied here.
+The definitions and semantics of Forwarding Commitment (FC) provided in {{I-D.guo-sidrops-fc-profile}} are applied here.
 
 - **Route is ineligible**: The term has the same meaning as in {{RFC4271}}, i.e., "route is ineligible to be installed in Loc-RIB and will be excluded from the next phase of route selection."
 - **AS-path**: This term defines a sequence of ASes listed in the BGP UPDATE AS_PATH or AS4_PATH attribute. In this document, the terms AS-path, AS_PATH, and AS4_PATH are interchangeably used.
