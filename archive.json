@@ -1,7 +1,7 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-04-15T01:56:04.294378+00:00",
-  "repo": "FCBGP/fc-verification",
+  "timestamp": "2025-04-17T01:54:09.163061+00:00",
+  "repo": "FCBGP/rpki-rpa-verification",
   "labels": [
     {
       "name": "bug",
@@ -55,7 +55,7 @@
       "number": 1,
       "id": "PR_kwDONjZfUM6Lso5K",
       "title": "publish: Version 00",
-      "url": "https://github.com/FCBGP/fc-verification/pull/1",
+      "url": "https://github.com/FCBGP/rpki-rpa-verification/pull/1",
       "state": "MERGED",
       "author": "BasilGuo",
       "authorAssociation": "COLLABORATOR",
@@ -64,10 +64,10 @@
       "body": "",
       "createdAt": "2025-02-19T06:19:03Z",
       "updatedAt": "2025-02-19T06:20:10Z",
-      "baseRepository": "FCBGP/fc-verification",
+      "baseRepository": "FCBGP/rpki-rpa-verification",
       "baseRefName": "main",
       "baseRefOid": "71355bcb25e69b7a8a62354e105e20c452be3b45",
-      "headRepository": "FCBGP/fc-verification",
+      "headRepository": "FCBGP/rpki-rpa-verification",
       "headRefName": "version-00",
       "headRefOid": "9d76d9dd26504013646c2bb4e775f18c03e8093c",
       "closedAt": "2025-02-19T06:20:10Z",
