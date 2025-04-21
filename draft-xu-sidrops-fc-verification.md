@@ -60,7 +60,7 @@ normative:
   RPKI-ASPA-Profile: I-D.ietf-sidrops-aspa-profile         # ASPA profile
   # I-D.ietf-sidrops-aspa-verification:    # ASPA verification
   RPKI-SPL-Profile: I-D.ietf-sidrops-rpki-prefixlist      # SPL profile
-  SPL-Verification: I-D.ietf-sidrops-spl-verification     # SPL verification
+  RPKI-SPL-Verification: I-D.ietf-sidrops-spl-verification     # SPL verification
   # I-D.geng-sidrops-asra-profile:         # ASRA profile
   # I-D.sriram-sidrops-asra-verification:    # ASRA verification
 
