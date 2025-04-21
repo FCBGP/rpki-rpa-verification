@@ -57,17 +57,17 @@ normative:
   RFC9582:
   RFC9234:
   RPKI-RPA-Profile: I-D.guo-sidrops-fc-profile # I-D.guo-sidrops-rpa-profile, # TODO: modify here before submit.
+
+informative:
+  RFC7908:
+  RFC9319:
+  RFC9324:
   RPKI-ASPA-Profile: I-D.ietf-sidrops-aspa-profile         # ASPA profile
   # I-D.ietf-sidrops-aspa-verification:    # ASPA verification
   RPKI-SPL-Profile: I-D.ietf-sidrops-rpki-prefixlist      # SPL profile
   RPKI-SPL-Verification: I-D.ietf-sidrops-spl-verification     # SPL verification
   # I-D.geng-sidrops-asra-profile:         # ASRA profile
   # I-D.sriram-sidrops-asra-verification:    # ASRA verification
-
-informative:
-  RFC7908:
-  RFC9319:
-  RFC9324:
 
 --- abstract
 
