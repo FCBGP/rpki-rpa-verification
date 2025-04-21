@@ -56,12 +56,11 @@ normative:
   RFC8205: # BGPsec
   RFC9582:
   RFC9234:
-  # I-D.guo-sidrops-fc-profile:
-  I-D.guo-sidrops-rpa-profile:
-  I-D.ietf-sidrops-aspa-profile:         # ASPA profile
+  RPKI-RPA-Profile: I-D.guo-sidrops-fc-profile # I-D.guo-sidrops-rpa-profile, # TODO: modify here before submit.
+  RPKI-ASPA-Profile: I-D.ietf-sidrops-aspa-profile         # ASPA profile
   # I-D.ietf-sidrops-aspa-verification:    # ASPA verification
-  I-D.ietf-sidrops-rpki-prefixlist:      # SPL profile
-  I-D.ietf-sidrops-spl-verification:     # SPL verification
+  RPKI-SPL-Profile: I-D.ietf-sidrops-rpki-prefixlist      # SPL profile
+  SPL-Verification: I-D.ietf-sidrops-spl-verification     # SPL verification
   # I-D.geng-sidrops-asra-profile:         # ASRA profile
   # I-D.sriram-sidrops-asra-verification:    # ASRA verification
 
@@ -78,11 +77,11 @@ The Route Path Authorizations (RPA) is an RPKI object that attests to the comple
 
 # Introduction {#Introduction}
 
-The Border Gateway Protocol (BGP) is vulnerable to route hijacks and route leaks {{RFC7908}}. Some existing BGP extensions can partially solve or alleviate these problems. Resource Public Key Infrastructure (RPKI) based route origin validation (RPKI-ROV) {{RFC6480}} {{RFC6811}} {{RFC9319}} {{RFC9582}} and Signed Prefix List-based Route Origin Verification (SPL-ROV) {{I-D.ietf-sidrops-rpki-prefixlist}} can be used to detect and filter accidental mis-originations. BGPsec is designed to provide security for the AS-path attribute in the BGP UPDATE message {{RFC8205}}. {{RFC9234}} and Autonomous System Provider Authorization (ASPA) {{I-D.ietf-sidrops-aspa-profile}} aim at detecting and mitigating accidental route leaks.
+The Border Gateway Protocol (BGP) is vulnerable to route hijacks and route leaks {{RFC7908}}. Some existing BGP extensions can partially solve or alleviate these problems. Resource Public Key Infrastructure (RPKI) based route origin validation (RPKI-ROV) {{RFC6480}} {{RFC6811}} {{RFC9319}} {{RFC9582}} and Signed Prefix List-based Route Origin Verification (SPL-ROV) {{RPKI-SPL-Profile}} can be used to detect and filter accidental mis-originations. BGPsec is designed to provide security for the AS-path attribute in the BGP UPDATE message {{RFC8205}}. {{RFC9234}} and Autonomous System Provider Authorization (ASPA) {{RPKI-ASPA-Profile}} aim at detecting and mitigating accidental route leaks.
 
 However, there are still some issues that need to be addressed. ASPA is a genius mechanism to verify BGP AS-path attribute content, which only stores customer-to-provider information in RPKI. Though the validity of the ASPA objects is verified, the relationship between two BGP neighbors cannot be attested. When two ASes announce mutually exclusive relationships, for example, AS A says AS B is its Provider and AS B says AS A is its Provider, no other ASes can verify their real relationships.
 
-The Route Path Authorizations (RPA)[I-D.guo-sidrops-rpa-profile] is a Resource Public Key Infrastructure (RPKI) object that attests to the complete routing paths description an Autonomous System (AS) would obey in Border Gateway Protocol (BGP) route propagation.
+The Route Path Authorizations (RPA) {{RPKI-RPA-Profile}} is a Resource Public Key Infrastructure (RPKI) object that attests to the complete routing paths description an Autonomous System (AS) would obey in Border Gateway Protocol (BGP) route propagation.
 
 
 This document specifies an RPA-based AS Path Verification methodology to prevent AS path forgery in the BGP AS-path attribute of advertised routes. RPA-based AS_PATH verification also detects and mitigates route leaks.
@@ -95,7 +94,7 @@ This document specifies an RPA-based AS Path Verification methodology to prevent
 
 # Definition of Commonly Used Terms {#DefinitionOfCommonlyUsedTerms}
 
-The definitions and semantics of Route Path Authorizations (RPA) provided in [I-D.guo-sidrops-rpa-profile] are applied here.
+The definitions and semantics of Route Path Authorizations (RPA) provided in {{RPKI-RPA-Profile}} are applied here.
 
 - **Route is ineligible**: The term has the same meaning as in {{RFC4271}}, i.e., "route is ineligible to be installed in Loc-RIB and will be excluded from the next phase of route selection."
 - **AS-path**: This term defines a sequence of ASes listed in the BGP UPDATE AS_PATH or AS4_PATH attribute. This document uses the terms AS-path, AS_PATH, and AS4_PATH interchangeably.
@@ -118,7 +117,7 @@ It is REQUIRED at least one routing path description in an RPA object. Otherwise
 
 RPAs describe the local routing paths of an AS. It can be used to verify the AS-path attribute in the BGP UPDATE message.
 
-Upon receiving a BGP UPDATE message, the AS_PATH validation procedure is initiated. This process involves querying the corresponding RPA for each AS along the path individually. If the prefix field of an RPA object is non-empty, prefix matching is performed. Furthermore, if the origins field is present, additional validations are carried out for ROA-based Route Origin Validation (ROA-ROV) defined in {{Section 2 of RFC6811}} and SPL-ROV defined in {{Section 4 of I-D.ietf-sidrops-spl-verification}}.
+Upon receiving a BGP UPDATE message, the AS_PATH validation procedure is initiated. This process involves querying the corresponding RPA for each AS along the path individually. If the prefix field of an RPA object is non-empty, prefix matching is performed. Furthermore, if the origins field is present, additional validations are carried out for ROA-based Route Origin Validation (ROA-ROV) defined in {{Section 2 of RFC6811}} and SPL-ROV defined in {{Section 4 of RPKI-SPL-Verification}}.
 
 An eBGP router that conforms to this specification MUST implement RPA-based AS_PATH verification procedures specified below.
 
