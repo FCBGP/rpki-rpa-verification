@@ -98,11 +98,11 @@ This document specifies an RPA-based AS Path Verification methodology to prevent
 The definitions and semantics of Route Path Authorizations (RPA) provided in [I-D.guo-sidrops-rpa-profile] are applied here.
 
 - **Route is ineligible**: The term has the same meaning as in {{RFC4271}}, i.e., "route is ineligible to be installed in Loc-RIB and will be excluded from the next phase of route selection."
-- **AS-path**: This term defines a sequence of ASes listed in the BGP UPDATE AS_PATH or AS4_PATH attribute. In this document, the terms AS-path, AS_PATH, and AS4_PATH are interchangeably used.
+- **AS-path**: This term defines a sequence of ASes listed in the BGP UPDATE AS_PATH or AS4_PATH attribute. This document uses the terms AS-path, AS_PATH, and AS4_PATH interchangeably.
 - **Weakly Valid**: This is one of the verification results of using RPA objects to verify AS_PATH, indicating that at least one AS in the path is validated as VALID by RDA, while all other ASes yield an UNKNOWN verification result.
 - **VRPP**: Validated RPA Payload (see {{RoutePathAuthorizations}}).
 
-# Route Path Authorizations (RPA){#RoutePathAuthorizations}
+# Route Path Authorizations (RPA) {#RoutePathAuthorizations}
 
 Route Path Authorizations (RPA) objects encapsulate the routing paths description of an Autonomous System (AS). Similar to most RPKI-signed objects, the verification results for RPA are classified into four distinct states: Valid, Weakly Valid, Invalid, and Unknown.
 
@@ -142,7 +142,7 @@ The specific configuration of a mitigation policy based on AS_PATH verification 
 
 # Operational Considerations {#OperationalConsiderations}
 
-Multiple valid RPA objects which contain the same asID could exist. In such a case, the union of these objects forms the complete routing path set of this AS. For a given asID, it is RECOMMENDED that a CA maintains a single RPA. If an AS holder publishes a RPA, then relying parties SHOULD assume that this object is complete for that issuer AS.
+Multiple valid RPA objects that contain the same asID could exist. In such a case, the union of these objects forms the complete routing path set of this AS. For a given asID, it is RECOMMENDED that a CA maintains a single RPA. If an AS holder publishes an RPA, then relying parties SHOULD assume that this object is complete for that issuer AS.
 
 If one AS receives a BGP UPDATE message with the issuer AS in the AS-path attribute which cannot match any routing path of this issuer AS, it implies that there is an AS-path forgery in this message.
 
