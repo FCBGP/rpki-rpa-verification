@@ -127,14 +127,14 @@ An eBGP router that conforms to this specification MUST implement RPA-based AS_P
 
 The verification algorithm is applied to each individual AS in the AS_PATH of the received BGP UPDATE message. For each AS, its corresponding RPA object is examined to verify attributes such as prefix scope, authorized neighbors, and origin declaration. The verification result for each AS is one of: Valid, Invalid, or Unknown, depending on the presence and content of the RPA and its alignment with the BGP announcement.
 
-1. Query the RPA associated with as_i (denoted RPA_i).
-2. If RPA_i is not available, then set 'AS_Results[as_i] = Unknown'.
-3. Perform authorized neighbors matching against the  AS_PATH. If RPA_i.previousASes or RPA_i.nexthopASes do not match the AS_PATH context, set 'AS_Results[as_i] = Invalid'.
-4. If RPA_i.prefixes is non-empty, perform prefix matching with the UPDATE message.
-5. If RPA_i.origins is non-empty, perform ROA-ROV and SPL-ROV validation.
-6. If both prefix and origin checks succeed, set 'AS_Results[as_i] = Valid'.
-7. If either check fails, set 'AS_Results[as_i] = Invalid'.
-8. Else, set 'AS_Results[as_i] = Unknown'.
+1. Query the RPA associated with AS.
+2. If RPA is not available, then set AS verification result is Unknown.
+3. Perform authorized neighbors matching against the AS_PATH. If RPA.previousASes or RPA.nexthopASes do not match the AS_PATH context, set AS verification result is Invalid.
+4. If RPA.prefixes is non-empty, perform prefix matching with the UPDATE message.
+5. If RPA.origins is non-empty, perform ROA-ROV and SPL-ROV validation.
+6. If both prefix and origin checks succeed, set AS verification result is Valid.
+7. If either check fails, set AS verification result is Invalid.
+8. Else, set AS verification result is Unknown.
 
 
 ## Path-Level Verification Algorithm
