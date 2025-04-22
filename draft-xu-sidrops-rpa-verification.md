@@ -124,7 +124,7 @@ An eBGP router that conforms to this specification MUST implement RPA-based AS_P
 2. Path-Level Verification: At the second stage, the system derives an overall path verification result by aggregating the outcomes of the per-AS verifications. The final status reflects the consistency and completeness of the entire path with respect to the available RPAs.
 
 ## Per-AS Verification Algorithm
-The verification algorithm is applied to each individual AS in the AS_PATH of the received BGP UPDATE message. For each AS, its corresponding RPA object is examined to verify attributes such as prefix scope, authorized neighbors, and origin declaration. The verification result for each AS is one of: Valid, Invalid, or Unknown, depending on the presence and content of the RPA and its alignment with the BGP announcement. 
+The verification algorithm is applied to each individual AS in the AS_PATH of the received BGP UPDATE message. For each AS, its corresponding RPA object is examined to verify attributes such as prefix scope, authorized neighbors, and origin declaration. The verification result for each AS is one of: Valid, Invalid, or Unknown, depending on the presence and content of the RPA and its alignment with the BGP announcement.
 
 1. Query the RPA associated with as_i (denoted RPA_i).
 2. If RPA_i is not available, then set AS_Results[as_i] = Unknown.
@@ -141,7 +141,7 @@ This process determines whether the sequence of ASes in the AS_PATH attribute co
 
 1. Let valid_count is set equal to number of ASes with Valid. Let invalid_count is set equal to number of ASes with Invalid. Let unknown_count is set equal to number of ASes with Unknown.
 2. If valid_count == 0 AND invalid_count == 0, then the verification result is Unknown.
-3. Else, if invalid_count == 0 AND unknown_count == 0, then the verification result is Valid. 
+3. Else, if invalid_count == 0 AND unknown_count == 0, then the verification result is Valid.
 4. Else, if valid_count >= 1 AND invalid_count == 0, then the verification result is Weakly Valid.
 5. Else, if invalid_count >= 1, then the verification result is Invalid.
 6. Else, the verification result is Unkown.
