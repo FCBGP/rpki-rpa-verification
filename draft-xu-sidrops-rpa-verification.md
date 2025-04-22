@@ -120,6 +120,7 @@ RPAs describe the local routing paths of an AS. They can be used to verify the A
 Upon receiving a BGP UPDATE message, the AS_PATH verification procedure is initiated. This process involves querying the corresponding RPA for each AS along the path individually. If the prefixes field of an RPA object is non-empty, prefix matching is performed. Furthermore, if the origins field is present, additional validations are carried out using ROA-based Route Origin Validation (ROA-ROV) as defined in {{Section 2 of RFC6811}} and SPL-ROV as defined in {{Section 4 of RPKI-SPL-Verification}}.
 
 An eBGP router that conforms to this specification MUST implement RPA-based AS_PATH verification procedures defined below. These procedures operates in a two-stage process:
+
 1. Per-AS Verification: At the first stage, each AS in the AS_PATH is evaluated individually based on its corresponding RPA object, if available. This stage validates whether each AS's declared routing path is consistent with the received AS_PATH attributes.
 2. Path-Level Verification: At the second stage, the system derives an overall path verification result by aggregating the outcomes of the per-AS verifications. The final status reflects the consistency and completeness of the entire path with respect to the available RPAs.
 
