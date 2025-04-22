@@ -120,23 +120,25 @@ RPAs describe the local routing paths of an AS. They can be used to verify the A
 Upon receiving a BGP UPDATE message, the AS_PATH verification procedure is initiated. This process involves querying the corresponding RPA for each AS along the path individually. If the prefixes field of an RPA object is non-empty, prefix matching is performed. Furthermore, if the origins field is present, additional validations are carried out using ROA-based Route Origin Validation (ROA-ROV) as defined in {{Section 2 of RFC6811}} and SPL-ROV as defined in {{Section 4 of I-D.ietf-sidrops-spl-verification}}.
 
 An eBGP router that conforms to this specification MUST implement RPA-based AS_PATH verification procedures defined below. These procedures operates in a two-stage process:
-1. Per-AS Verification: At the first stage, each AS in the AS_PATH is evaluated individually based on its corresponding RPA object, if available. This stage validates whether each AS’s declared routing path is consistent with the received AS_PATH attributes.
+1. Per-AS Verification: At the first stage, each AS in the AS_PATH is evaluated individually based on its corresponding RPA object, if available. This stage validates whether each AS's declared routing path is consistent with the received AS_PATH attributes.
 2. Path-Level Verification: At the second stage, the system derives an overall path verification result by aggregating the outcomes of the per-AS verifications. The final status reflects the consistency and completeness of the entire path with respect to the available RPAs.
 
 ## Per-AS Verification Algorithm
+
 The verification algorithm is applied to each individual AS in the AS_PATH of the received BGP UPDATE message. For each AS, its corresponding RPA object is examined to verify attributes such as prefix scope, authorized neighbors, and origin declaration. The verification result for each AS is one of: Valid, Invalid, or Unknown, depending on the presence and content of the RPA and its alignment with the BGP announcement.
 
 1. Query the RPA associated with as_i (denoted RPA_i).
-2. If RPA_i is not available, then set AS_Results['as_i'] = Unknown.
-3. Perform authorized neighbors matching against the  AS_PATH. If RPA_i.previousASes or RPA_i.nexthopASes do not match the AS_PATH context, set AS_Results['as_i'] = Invalid.
+2. If RPA_i is not available, then set 'AS_Results[as_i] = Unknown'.
+3. Perform authorized neighbors matching against the  AS_PATH. If RPA_i.previousASes or RPA_i.nexthopASes do not match the AS_PATH context, set 'AS_Results[as_i] = Invalid'.
 4. If RPA_i.prefixes is non-empty, perform prefix matching with the UPDATE message.
 5. If RPA_i.origins is non-empty, perform ROA-ROV and SPL-ROV validation.
-6. If both prefix and origin checks succeed, set AS_Results['as_i'] = Valid.
-7. If either check fails, set AS_Results['as_i'] = Invalid.
-8. Else, set AS_Results['as_i'] = Unknown.
+6. If both prefix and origin checks succeed, set 'AS_Results[as_i] = Valid'.
+7. If either check fails, set 'AS_Results[as_i] = Invalid'.
+8. Else, set 'AS_Results[as_i] = Unknown'.
 
 
 ## Path-Level Verification Algorithm
+
 This process determines whether the sequence of ASes in the AS_PATH attribute conforms to the collectively declared routing paths published in RPAs. By aggregating the per-AS verification results, the algorithm computes a comprehensive path verification result for each received BGP route.
 
 1. Let valid_count is set equal to number of ASes with Valid. Let invalid_count is set equal to number of ASes with Invalid. Let unknown_count is set equal to number of ASes with Unknown.
