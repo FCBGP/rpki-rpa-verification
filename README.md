@@ -1,17 +1,19 @@
-# BGP AS_PATH Verification Based on Forwarding Commitment (FC) Objects
+<!-- regenerate: on (set to off if you edit this file) -->
 
-This is the working area for the individual Internet-Draft, "BGP AS_PATH Verification Based on Forwarding Commitment (FC) Objects".
+# BGP AS_PATH Verification Based on Route Path Authorizations (RPA) Objects
 
-* [Editor's Copy](https://FCBGP.github.io/fc-verification/#go.draft-xu-sidrops-fc-verification.html)
-* [Datatracker Page](https://datatracker.ietf.org/doc/draft-xu-sidrops-fc-verification)
-* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-xu-sidrops-fc-verification)
-* [Compare Editor's Copy to Individual Draft](https://FCBGP.github.io/fc-verification/#go.draft-xu-sidrops-fc-verification.diff)
+This is the working area for the individual Internet-Draft, "BGP AS_PATH Verification Based on Route Path Authorizations (RPA) Objects".
+
+* [Editor's Copy](https://FCBGP.github.io/rpki-rpa-verification/#go.draft-xu-sidrops-rpa-verification.html)
+* [Datatracker Page](https://datatracker.ietf.org/doc/draft-xu-sidrops-rpa-verification)
+* [Individual Draft](https://datatracker.ietf.org/doc/html/draft-xu-sidrops-rpa-verification)
+* [Compare Editor's Copy to Individual Draft](https://FCBGP.github.io/rpki-rpa-verification/#go.draft-xu-sidrops-rpa-verification.diff)
 
 
 ## Contributing
 
 See the
-[guidelines for contributions](https://github.com/FCBGP/fc-verification/blob/main/CONTRIBUTING.md).
+[guidelines for contributions](https://github.com/FCBGP/rpki-rpa-verification/blob/main/CONTRIBUTING.md).
 
 Contributions can be made by creating pull requests.
 The GitHub interface supports creating pull requests using the Edit (✏) button.
