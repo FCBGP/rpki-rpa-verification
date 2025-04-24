@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-04-22T01:54:54.198364+00:00",
+  "timestamp": "2025-04-24T01:55:53.828159+00:00",
   "repo": "FCBGP/rpki-rpa-verification",
   "labels": [
     {
@@ -75,6 +75,34 @@
       "mergedBy": "BasilGuo",
       "mergeCommit": {
         "oid": "3034177613eaa5c516b4d5cbf9661271f9d58bfc"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 2,
+      "id": "PR_kwDONjZfUM6Tah7X",
+      "title": "merge rpa-v00 to main after rename",
+      "url": "https://github.com/FCBGP/rpki-rpa-verification/pull/2",
+      "state": "MERGED",
+      "author": "BasilGuo",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-04-22T10:12:40Z",
+      "updatedAt": "2025-04-22T10:19:02Z",
+      "baseRepository": "FCBGP/rpki-rpa-verification",
+      "baseRefName": "main",
+      "baseRefOid": "5df7a2ee827201eba5a27fd0e1d6ce907b70b1cc",
+      "headRepository": "FCBGP/rpki-rpa-verification",
+      "headRefName": "rpa-v00",
+      "headRefOid": "f9f55d6e029aaa62d745006476ec28702ba8bc0c",
+      "closedAt": "2025-04-22T10:19:02Z",
+      "mergedAt": "2025-04-22T10:19:02Z",
+      "mergedBy": "BasilGuo",
+      "mergeCommit": {
+        "oid": "55015700b1b3d496cc3910d19378461e48fe0d51"
       },
       "comments": [],
       "reviews": []
