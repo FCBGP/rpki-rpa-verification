@@ -5,11 +5,11 @@
 SIDR Operations                                                    K. Xu
 Internet-Draft                                       Tsinghua University
 Intended status: Standards Track                                S. Jiang
-Expires: 24 October 2025                                          Y. Guo
+Expires: 7 November 2025                                          Y. Guo
                                                           ZGC Laboratory
                                                                  X. Wang
                                                      Tsinghua University
-                                                           22 April 2025
+                                                              6 May 2025
 
 
    BGP AS_PATH Verification Based on Route Path Authorizations (RPA)
@@ -60,7 +60,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 24 October 2025.
+   This Internet-Draft will expire on 7 November 2025.
 
 Copyright Notice
 
@@ -168,22 +168,22 @@ Table of Contents
    of routing paths, providing a comprehensive list can be challenging.
    Consequently, it is RECOMMENDED to include routing paths with the
    origins/prefixes field designated as 'NONE' when the issuer is unable
-   to specify which routes will be propagated from previousASes to
-   nexthopASes.  It may have a few of these routePaths with the origins/
-   prefixes field set as 'NONE'.
+   to specify which routes will be propagated from previousHops to
+   nextHops.  It may have a few of these routePathBlocks with the
+   origins/prefixes field set as 'NONE'.
 
    In general, there exists a singular valid RPA object corresponding to
    a specific asID.  However, in instances where multiple valid RPA
    objects containing the same asID are present, the union of the
-   resulting routePath members constitutes the comprehensive set of
-   members.  This complete set, which may arise from either a single or
-   multiple RPAs, is locally maintained by a Relying Party (RP) or a
+   resulting routePathBlocks members constitutes the comprehensive set
+   of members.  This complete set, which may arise from either a single
+   or multiple RPAs, is locally maintained by a Relying Party (RP) or a
    compliant router.  Such an object is referred to as the Validated RPA
    Payload (VRPP) for the asID.
 
-   Except for the empty origins, there would also be empty previousASes
-   and nexthopASes in a routing path.  It is NOT RECOMMENDED to describe
-   routing path without nexthopASes as this does not help verify BGP
+   Except for the empty origins, there would also be empty previousHops
+   and nextHops in a routing path.  It is NOT RECOMMENDED to describe
+   routing path without nextHops as this does not help verify BGP
    AS_PATH.
 
    It is REQUIRED at least one routing path description in an RPA
@@ -235,7 +235,7 @@ Table of Contents
        Unknown.
 
    3.  Perform authorized neighbors matching against the AS_PATH.  If
-       RPA.previousASes or RPA.nexthopASes do not match the AS_PATH
+       RPA.previousHops or RPA.nextHops do not match the AS_PATH
        context, set AS verification result is Invalid.
 
    4.  If RPA.prefixes is non-empty, perform prefix matching with the

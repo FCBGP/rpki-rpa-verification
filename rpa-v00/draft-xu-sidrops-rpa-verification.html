@@ -1046,11 +1046,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">RPA-based AS_PATH Verification</td>
-<td class="right">April 2025</td>
+<td class="right">May 2025</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Xu, et al.</td>
-<td class="center">Expires 24 October 2025</td>
+<td class="center">Expires 7 November 2025</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1063,12 +1063,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-xu-sidrops-rpa-verification-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-04-22" class="published">22 April 2025</time>
+<time datetime="2025-05-06" class="published">6 May 2025</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2025-10-24">24 October 2025</time></dd>
+<dd class="expires"><time datetime="2025-11-07">7 November 2025</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1130,7 +1130,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 24 October 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 7 November 2025.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1265,9 +1265,9 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-route-path-authorizations-r" class="section-name selfRef">Route Path Authorizations (RPA)</a>
       </h2>
 <p id="section-4-1">Route Path Authorizations (RPA) objects encapsulate the routing paths description of an Autonomous System (AS). Similar to most RPKI-signed objects, the verification results for RPA are classified into four distinct states: Valid, Weakly Valid, Invalid, and Unknown.<a href="#section-4-1" class="pilcrow">¶</a></p>
-<p id="section-4-2">It is <span class="bcp14">RECOMMENDED</span> that all routing paths be explicitly enumerated within a single RPA object. However, due to the inherent complexity of routing paths, providing a comprehensive list can be challenging. Consequently, it is <span class="bcp14">RECOMMENDED</span> to include routing paths with the origins/prefixes field designated as 'NONE' when the issuer is unable to specify which routes will be propagated from previousASes to nexthopASes. It may have a few of these routePaths with the origins/prefixes field set as 'NONE'.<a href="#section-4-2" class="pilcrow">¶</a></p>
-<p id="section-4-3">In general, there exists a singular valid RPA object corresponding to a specific asID. However, in instances where multiple valid RPA objects containing the same asID are present, the union of the resulting routePath members constitutes the comprehensive set of members. This complete set, which may arise from either a single or multiple RPAs, is locally maintained by a Relying Party (RP) or a compliant router. Such an object is referred to as the Validated RPA Payload (VRPP) for the asID.<a href="#section-4-3" class="pilcrow">¶</a></p>
-<p id="section-4-4">Except for the empty origins, there would also be empty previousASes and nexthopASes in a routing path. It is <span class="bcp14">NOT RECOMMENDED</span> to describe routing path without nexthopASes as this does not help verify BGP AS_PATH.<a href="#section-4-4" class="pilcrow">¶</a></p>
+<p id="section-4-2">It is <span class="bcp14">RECOMMENDED</span> that all routing paths be explicitly enumerated within a single RPA object. However, due to the inherent complexity of routing paths, providing a comprehensive list can be challenging. Consequently, it is <span class="bcp14">RECOMMENDED</span> to include routing paths with the origins/prefixes field designated as 'NONE' when the issuer is unable to specify which routes will be propagated from previousHops to nextHops. It may have a few of these routePathBlocks with the origins/prefixes field set as 'NONE'.<a href="#section-4-2" class="pilcrow">¶</a></p>
+<p id="section-4-3">In general, there exists a singular valid RPA object corresponding to a specific asID. However, in instances where multiple valid RPA objects containing the same asID are present, the union of the resulting routePathBlocks members constitutes the comprehensive set of members. This complete set, which may arise from either a single or multiple RPAs, is locally maintained by a Relying Party (RP) or a compliant router. Such an object is referred to as the Validated RPA Payload (VRPP) for the asID.<a href="#section-4-3" class="pilcrow">¶</a></p>
+<p id="section-4-4">Except for the empty origins, there would also be empty previousHops and nextHops in a routing path. It is <span class="bcp14">NOT RECOMMENDED</span> to describe routing path without nextHops as this does not help verify BGP AS_PATH.<a href="#section-4-4" class="pilcrow">¶</a></p>
 <p id="section-4-5">It is <span class="bcp14">REQUIRED</span> at least one routing path description in an RPA object. Otherwise, the empty RPA object means no routes can be transited or transformed from this asID.<a href="#section-4-5" class="pilcrow">¶</a></p>
 </section>
 </div>
@@ -1301,7 +1301,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
             <p id="section-5.1-2.2.1">If RPA is not available, then set AS verification result is Unknown.<a href="#section-5.1-2.2.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-5.1-2.3">
-            <p id="section-5.1-2.3.1">Perform authorized neighbors matching against the AS_PATH. If RPA.previousASes or RPA.nexthopASes do not match the AS_PATH context, set AS verification result is Invalid.<a href="#section-5.1-2.3.1" class="pilcrow">¶</a></p>
+            <p id="section-5.1-2.3.1">Perform authorized neighbors matching against the AS_PATH. If RPA.previousHops or RPA.nextHops do not match the AS_PATH context, set AS verification result is Invalid.<a href="#section-5.1-2.3.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-5.1-2.4">
             <p id="section-5.1-2.4.1">If RPA.prefixes is non-empty, perform prefix matching with the UPDATE message.<a href="#section-5.1-2.4.1" class="pilcrow">¶</a></p>
