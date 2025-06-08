@@ -105,11 +105,11 @@ The definitions and semantics of Route Path Authorizations (RPA) provided in {{R
 
 Route Path Authorizations (RPA) objects encapsulate the routing paths description of an Autonomous System (AS). Similar to most RPKI-signed objects, the verification results for RPA are classified into four distinct states: Valid, Weakly Valid, Invalid, and Unknown.
 
-It is RECOMMENDED that all routing paths be explicitly enumerated within a single RPA object. However, due to the inherent complexity of routing paths, providing a comprehensive list can be challenging. Consequently, it is RECOMMENDED to include routing paths with the origins/prefixes field designated as 'NONE' when the issuer is unable to specify which routes will be propagated from previousASes to nexthopASes. It may have a few of these routePaths with the origins/prefixes field set as 'NONE'.
+It is RECOMMENDED that all routing paths be explicitly enumerated within a single RPA object. However, due to the inherent complexity of routing paths, providing a comprehensive list can be challenging. Consequently, it is RECOMMENDED to include routing paths with the origins/prefixes field designated as 'NONE' when the issuer is unable to specify which routes will be propagated from previousHops to nextHops. It may have a few of these routePathBlocks with the origins/prefixes field set as 'NONE'.
 
-In general, there exists a singular valid RPA object corresponding to a specific asID. However, in instances where multiple valid RPA objects containing the same asID are present, the union of the resulting routePath members constitutes the comprehensive set of members. This complete set, which may arise from either a single or multiple RPAs, is locally maintained by a Relying Party (RP) or a compliant router. Such an object is referred to as the Validated RPA Payload (VRPP) for the asID.
+In general, there exists a singular valid RPA object corresponding to a specific asID. However, in instances where multiple valid RPA objects containing the same asID are present, the union of the resulting routePathBlocks members constitutes the comprehensive set of members. This complete set, which may arise from either a single or multiple RPAs, is locally maintained by a Relying Party (RP) or a compliant router. Such an object is referred to as the Validated RPA Payload (VRPP) for the asID.
 
-Except for the empty origins, there would also be empty previousASes and nexthopASes in a routing path. It is NOT RECOMMENDED to describe routing path without nexthopASes as this does not help verify BGP AS_PATH.
+Except for the empty origins, there would also be empty previousHops and nextHops in a routing path. It is NOT RECOMMENDED to describe routing path without nextHops as this does not help verify BGP AS_PATH.
 
 It is REQUIRED at least one routing path description in an RPA object. Otherwise, the empty RPA object means no routes can be transited or transformed from this asID.
 
@@ -130,7 +130,7 @@ The verification algorithm is applied to each individual AS in the AS_PATH of th
 
 1. Query the RPA associated with AS.
 2. If RPA is not available, then set AS verification result is Unknown.
-3. Perform authorized neighbors matching against the AS_PATH. If RPA.previousASes or RPA.nexthopASes do not match the AS_PATH context, set AS verification result is Invalid.
+3. Perform authorized neighbors matching against the AS_PATH. If RPA.previousHops or RPA.nextHops do not match the AS_PATH context, set AS verification result is Invalid.
 4. If RPA.prefixes is non-empty, perform prefix matching with the UPDATE message.
 5. If RPA.origins is non-empty, perform ROA-ROV and SPL-ROV validation.
 6. If both prefix and origin checks succeed, set AS verification result is Valid.
