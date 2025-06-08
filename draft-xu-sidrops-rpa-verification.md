@@ -32,13 +32,13 @@ author:
       email: xuke@tsinghua.edu.cn
   -
       fullname: Shenglin Jiang
-      org: ZGC Laboratory
+      org: Zhongguancun Laboratory
       city: Beijing
       country: China
       email: jiangshl@zgclab.edu.cn
   -
       fullname: Yangfei Guo
-      org: ZGC Laboratory
+      org: Zhongguancun Laboratory
       city: Beijing
       country: China
       email: guoyangfei@zgclab.edu.cn
