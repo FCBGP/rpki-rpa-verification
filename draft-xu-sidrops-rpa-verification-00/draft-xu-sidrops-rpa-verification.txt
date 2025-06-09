@@ -6,7 +6,7 @@ SIDR Operations                                                    K. Xu
 Internet-Draft                                       Tsinghua University
 Intended status: Standards Track                                S. Jiang
 Expires: 11 December 2025                                         Y. Guo
-                                                          ZGC Laboratory
+                                                 Zhongguancun Laboratory
                                                                  X. Wang
                                                      Tsinghua University
                                                              9 June 2025
@@ -419,14 +419,14 @@ Authors' Addresses
 
 
    Shenglin Jiang
-   ZGC Laboratory
+   Zhongguancun Laboratory
    Beijing
    China
    Email: jiangshl@zgclab.edu.cn
 
 
    Yangfei Guo
-   ZGC Laboratory
+   Zhongguancun Laboratory
    Beijing
    China
    Email: guoyangfei@zgclab.edu.cn
