@@ -5,11 +5,11 @@
 SIDR Operations                                                    K. Xu
 Internet-Draft                                       Tsinghua University
 Intended status: Standards Track                                S. Jiang
-Expires: 10 December 2025                                         Y. Guo
+Expires: 4 June 2026                                              Y. Guo
                                                  Zhongguancun Laboratory
                                                                  X. Wang
                                                      Tsinghua University
-                                                             8 June 2025
+                                                         1 December 2025
 
 
    BGP AS_PATH Verification Based on Route Path Authorizations (RPA)
@@ -19,13 +19,13 @@ Expires: 10 December 2025                                         Y. Guo
 Abstract
 
    The Route Path Authorizations (RPA) is an RPKI object that attests to
-   the complete routing paths description which an Autonomous System
-   (AS) would obey in Border Gateway Protocol (BGP) route propagation.
-   This document specifies an RPA-based AS Path Verification methodology
-   to mitigate, even solve, AS Path forgery and route leaks.  This
-   document also explains the various BGP security threats that RPA can
-   help address and provides operational considerations associated with
-   RPA deployment.
+   the routing paths description which an Autonomous System (AS) would
+   obey in Border Gateway Protocol (BGP) route propagation.  This
+   document specifies an RPA-based AS Path Verification methodology to
+   mitigate, even solve, AS Path forgery and route leaks.  This document
+   also explains the various BGP security threats that RPA can help
+   address and provides operational considerations associated with RPA
+   deployment.
 
 About This Document
 
@@ -60,7 +60,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 10 December 2025.
+   This Internet-Draft will expire on 4 June 2026.
 
 Copyright Notice
 
@@ -98,13 +98,13 @@ Table of Contents
 1.  Introduction
 
    The Border Gateway Protocol (BGP) is vulnerable to route hijacks and
-   route leaks [RFC7908].  Some existing BGP extensions can partially
-   solve or alleviate these problems.  Resource Public Key
-   Infrastructure (RPKI) based route origin validation (RPKI-ROV)
-   [RFC6480] [RFC6811] [RFC9319] [RFC9582] and Signed Prefix List-based
-   Route Origin Verification (SPL-ROV) [RPKI-SPL-Profile] can be used to
-   detect and filter accidental mis-originations.  BGPsec is designed to
-   provide security for the AS-path attribute in the BGP UPDATE message
+   route leaks [RFC7908].  Several existing BGP extensions can mitigate
+   these attacks to some extent.  Resource Public Key Infrastructure
+   (RPKI) based route origin validation (RPKI-ROV) [RFC6480] [RFC6811]
+   [RFC9319] [RFC9582] and Signed Prefix List-based Route Origin
+   Verification (SPL-ROV) [RPKI-SPL-Profile] can be used to detect and
+   filter accidental mis-originations.  BGPsec is designed to provide
+   assurance for the AS-path attribute in the BGP UPDATE message
    [RFC8205].  [RFC9234] and Autonomous System Provider Authorization
    (ASPA) [RPKI-ASPA-Profile] aim at detecting and mitigating accidental
    route leaks.
@@ -119,9 +119,9 @@ Table of Contents
    their real relationships.
 
    The Route Path Authorizations (RPA) [RPKI-RPA-Profile] is a Resource
-   Public Key Infrastructure (RPKI) object that attests to the complete
-   routing paths description an Autonomous System (AS) would obey in
-   Border Gateway Protocol (BGP) route propagation.
+   Public Key Infrastructure (RPKI) object that attests to the routing
+   paths description an Autonomous System (AS) would obey in Border
+   Gateway Protocol (BGP) route propagation.
 
    This document specifies an RPA-based AS Path Verification methodology
    to prevent AS path forgery in the BGP AS-path attribute of advertised
@@ -145,11 +145,7 @@ Table of Contents
       [RFC4271], i.e., "route is ineligible to be installed in Loc-RIB
       and will be excluded from the next phase of route selection."
 
-   *  *AS-path*: This term defines a sequence of ASes listed in the BGP
-      UPDATE AS_PATH or AS4_PATH attribute.  This document uses the
-      terms AS-path, AS_PATH, and AS4_PATH interchangeably.
-
-   *  *Weakly Valid*: This is one of the verification results of using
+   *  *Weakly Valid*: This is one of the verification status of using
       RPA objects to verify AS_PATH, indicating that at least one AS in
       the path is validated as VALID by RPA, while all other ASes yield
       an UNKNOWN verification result.
@@ -159,9 +155,9 @@ Table of Contents
 4.  Route Path Authorizations (RPA)
 
    Route Path Authorizations (RPA) objects encapsulate the routing paths
-   description of an Autonomous System (AS).  Similar to most RPKI-
-   signed objects, the verification results for RPA are classified into
-   four distinct states: Valid, Weakly Valid, Invalid, and Unknown.
+   description of an AS.  Similar to most RPKI-signed objects, the
+   verification results for RPA are classified into four distinct
+   states: Valid, Weakly Valid, Invalid, and Unknown.
 
    It is RECOMMENDED that all routing paths be explicitly enumerated
    within a single RPA object.  However, due to the inherent complexity
@@ -176,8 +172,8 @@ Table of Contents
    a specific asID.  However, in instances where multiple valid RPA
    objects containing the same asID are present, the union of the
    resulting routePathBlocks members constitutes the comprehensive set
-   of members.  This complete set, which may arise from either a single
-   or multiple RPAs, is locally maintained by a Relying Party (RP) or a
+   of members.  This set, which may arise from either a single or
+   multiple RPAs, is locally maintained by a Relying Party (RP) or a
    compliant router.  Such an object is referred to as the Validated RPA
    Payload (VRPP) for the asID.
 
@@ -214,7 +210,7 @@ Table of Contents
        routing path is consistent with the received AS_PATH attributes.
 
    2.  Path-Level Verification: At the second stage, the system derives
-       an overall path verification result by aggregating the outcomes
+       an overall path verification status by aggregating the outcomes
        of the per-AS verifications.  The final status reflects the
        consistency and completeness of the entire path with respect to
        the available RPAs.
@@ -296,11 +292,10 @@ Table of Contents
 6.  Operational Considerations
 
    Multiple valid RPA objects that contain the same asID could exist.
-   In such a case, the union of these objects forms the complete routing
-   path set of this AS.  For a given asID, it is RECOMMENDED that a CA
-   maintains a single RPA.  If an AS holder publishes an RPA, then
-   relying parties SHOULD assume that this object is complete for that
-   issuer AS.
+   In such a case, the union of these objects forms the routing path set
+   of this AS.  For a given asID, it is RECOMMENDED that a CA maintains
+   a single RPA.  If an AS holder publishes an RPA, then relying parties
+   SHOULD assume that this object is complete for that issuer AS.
 
    If one AS receives a BGP UPDATE message with the issuer AS in the AS-
    path attribute which cannot match any routing path of this issuer AS,
@@ -357,10 +352,10 @@ Table of Contents
               <https://www.rfc-editor.org/rfc/rfc9582>.
 
    [RPKI-RPA-Profile]
-              Guo, Y., Wang, X., Xu, K., liu, Z., and L. Qi, "A Profile
-              for Forwarding Commitments (FCs)", Work in Progress,
-              Internet-Draft, draft-guo-sidrops-fc-profile-00, 18
-              February 2025, <https://datatracker.ietf.org/doc/html/
+              Guo, Y. B., Wang, X., Xu, K., liu, Z., and L. Qi, "A
+              Profile for Forwarding Commitments (FCs)", Work in
+              Progress, Internet-Draft, draft-guo-sidrops-fc-profile-00,
+              18 February 2025, <https://datatracker.ietf.org/doc/html/
               draft-guo-sidrops-fc-profile-00>.
 
 9.2.  Informative References
@@ -385,9 +380,9 @@ Table of Contents
               Azimov, A., Uskov, E., Bush, R., Snijders, J., Housley,
               R., and B. Maddison, "A Profile for Autonomous System
               Provider Authorization", Work in Progress, Internet-Draft,
-              draft-ietf-sidrops-aspa-profile-19, 6 January 2025,
+              draft-ietf-sidrops-aspa-profile-20, 18 August 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-sidrops-
-              aspa-profile-19>.
+              aspa-profile-20>.
 
    [RPKI-SPL-Profile]
               Snijders, J. and G. Huston, "A profile for Signed Prefix
@@ -401,9 +396,9 @@ Table of Contents
               Sriram, K., Snijders, J., and D. Montgomery, "Signed
               Prefix List (SPL) Based Route Origin Verification and
               Operational Considerations", Work in Progress, Internet-
-              Draft, draft-ietf-sidrops-spl-verification-01, 14 December
-              2024, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              sidrops-spl-verification-01>.
+              Draft, draft-ietf-sidrops-spl-verification-02, 16 June
+              2025, <https://datatracker.ietf.org/doc/html/draft-ietf-
+              sidrops-spl-verification-02>.
 
 Acknowledgments
 
