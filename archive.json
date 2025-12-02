@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2025-11-30T02:12:21.386666+00:00",
+  "timestamp": "2025-12-02T02:02:45.533588+00:00",
   "repo": "FCBGP/rpki-rpa-verification",
   "labels": [
     {
@@ -147,7 +147,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2025-06-08T10:15:31Z",
-      "updatedAt": "2025-06-08T10:16:33Z",
+      "updatedAt": "2025-12-01T01:39:00Z",
       "baseRepository": "FCBGP/rpki-rpa-verification",
       "baseRefName": "main",
       "baseRefOid": "f9b5ac9b86094f85885cd5f87e48a6f097948f93",
@@ -159,6 +159,34 @@
       "mergedBy": "shenglinwh",
       "mergeCommit": {
         "oid": "3593dc3fef69a22aec95d587f34c2fee9dab12a6"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 5,
+      "id": "PR_kwDONjZfUM62PO5i",
+      "title": "Rpa v01",
+      "url": "https://github.com/FCBGP/rpki-rpa-verification/pull/5",
+      "state": "MERGED",
+      "author": "shenglinwh",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2025-12-01T02:36:54Z",
+      "updatedAt": "2025-12-01T02:39:33Z",
+      "baseRepository": "FCBGP/rpki-rpa-verification",
+      "baseRefName": "main",
+      "baseRefOid": "3593dc3fef69a22aec95d587f34c2fee9dab12a6",
+      "headRepository": "FCBGP/rpki-rpa-verification",
+      "headRefName": "rpa-v01",
+      "headRefOid": "ea1672b8426e0f9c49b563c3bf8bf6578b18d443",
+      "closedAt": "2025-12-01T02:39:32Z",
+      "mergedAt": "2025-12-01T02:39:32Z",
+      "mergedBy": "shenglinwh",
+      "mergeCommit": {
+        "oid": "866b67445cc5e574bea1f0f4b3575b8bd64e217f"
       },
       "comments": [],
       "reviews": []
