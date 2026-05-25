@@ -12,21 +12,21 @@
 <meta content="
        The Route Path Authorizations (RPA) is an RPKI object that attests to the routing paths description which an Autonomous System (AS) would obey in Border Gateway Protocol (BGP) route propagation. This document specifies an RPA-based AS Path Verification methodology to mitigate, even solve, AS Path forgery and route leaks. This document also explains the various BGP security threats that RPA can help address and provides operational considerations associated with RPA deployment. 
     " name="description">
-<meta content="xml2rfc 3.31.0" name="generator">
+<meta content="xml2rfc 3.33.0" name="generator">
 <meta content="draft-xu-sidrops-rpa-verification-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.31.0
-    Python 3.12.12
+  xml2rfc 3.33.0
+    Python 3.12.13
     ConfigArgParse 1.7
     google-i18n-address 3.1.1
-    intervaltree 3.1.0
+    intervaltree 3.2.1
     Jinja2 3.1.6
-    lxml 5.3.1
-    platformdirs 4.5.0
+    lxml 6.0.2
+    platformdirs 4.9.6
     pycountry 24.6.1
-    PyYAML 6.0.2
-    requests 2.32.5
-    wcwidth 0.2.14
+    PyYAML 6.0.3
+    requests 2.33.1
+    wcwidth 0.7.0
 -->
 <link href="draft-xu-sidrops-rpa-verification.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -167,7 +167,7 @@
   font-weight: 400;
   font-display: swap;
   src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin-ext.woff2') format('woff2');
-  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 @font-face {
   font-family: 'Oxygen Mono';
@@ -175,7 +175,8 @@
   font-weight: 400;
   font-display: swap;
   src: local('Oxygen Mono'), local('OxygenMono-Regular'), url('https://martinthomson.github.io/rfc-css/fonts/oxygenmono-regular-latin.woff2') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
 }
 
 @font-face {
@@ -567,6 +568,7 @@ aside, blockquote {
 }
 blockquote {
   margin: 1em 0;
+  border-left: 2px var(--pilcrow-strong) solid;
 }
 cite {
   display: block;
@@ -637,7 +639,7 @@ a.pilcrow {
   }
 }
 @media not print {
-  :hover > a.pilcrow {
+  :hover > a.pilcrow, a.pilcrow:focus {
     opacity: 1;
   }
   a.pilcrow[href]:hover {
@@ -1045,11 +1047,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">RPA-based AS_PATH Verification</td>
-<td class="right">December 2025</td>
+<td class="right">May 2026</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Xu, et al.</td>
-<td class="center">Expires 4 June 2026</td>
+<td class="center">Expires 26 November 2026</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1062,12 +1064,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-xu-sidrops-rpa-verification-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2025-12-01" class="published">1 December 2025</time>
+<time datetime="2026-05-25" class="published">25 May 2026</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2026-06-04">4 June 2026</time></dd>
+<dd class="expires"><time datetime="2026-11-26">26 November 2026</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1129,7 +1131,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 4 June 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 26 November 2026.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1138,7 +1140,7 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <a href="#name-copyright-notice" class="section-name selfRef">Copyright Notice</a>
         </h2>
 <p id="section-boilerplate.2-1">
-            Copyright (c) 2025 IETF Trust and the persons identified as the
+            Copyright (c) 2026 IETF Trust and the persons identified as the
             document authors. All rights reserved.<a href="#section-boilerplate.2-1" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.2-2">
             This document is subject to BCP 78 and the IETF Trust's Legal
@@ -1250,7 +1252,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
           <p id="section-3-2.2.1"><strong>Weakly Valid</strong>: This is one of the verification status of using RPA objects to verify AS_PATH, indicating that at least one AS in the path is validated as VALID by RPA, while all other ASes yield an UNKNOWN verification result.<a href="#section-3-2.2.1" class="pilcrow">¶</a></p>
 </li>
         <li class="normal" id="section-3-2.3">
-          <p id="section-3-2.3.1"><strong>VRPP</strong>: Validated RPA Payload (see <a href="#RoutePathAuthorizations" class="auto internal xref">Section 4</a>).<a href="#section-3-2.3.1" class="pilcrow">¶</a></p>
+          <p id="section-3-2.3.1"><strong>VRPP</strong>: Validated RPA Payload.<a href="#section-3-2.3.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 </section>
@@ -1273,7 +1275,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <a href="#section-5" class="section-number selfRef">5. </a><a href="#name-as_path-verification-using-" class="section-name selfRef">AS_PATH Verification Using RPA</a>
       </h2>
 <p id="section-5-1">RPAs describe the local routing paths of an AS. They can be used to verify the AS_PATH attribute in BGP UPDATE messages.<a href="#section-5-1" class="pilcrow">¶</a></p>
-<p id="section-5-2">Upon receiving a BGP UPDATE message, the AS_PATH verification procedure is initiated. This process involves querying the corresponding RPA for each AS along the path individually. If the prefixes field of an RPA object is non-empty, prefix matching is performed. Furthermore, if the origins field is present, additional validations are carried out using ROA-based Route Origin Validation (ROA-ROV) as defined in <span><a href="https://rfc-editor.org/rfc/rfc6811#section-2" class="relref">Section 2</a> of [<a href="#RFC6811" class="cite xref">RFC6811</a>]</span> and SPL-ROV as defined in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-sidrops-spl-verification-02#section-4" class="relref">Section 4</a> of [<a href="#RPKI-SPL-Verification" class="cite xref">RPKI-SPL-Verification</a>]</span>.<a href="#section-5-2" class="pilcrow">¶</a></p>
+<p id="section-5-2">Upon receiving a BGP UPDATE message, the AS_PATH verification procedure is initiated. This process involves querying the corresponding RPA for each AS along the path individually. If the prefixes field of an RPA object is non-empty, prefix matching is performed. Furthermore, if the origins field is present, additional validations are carried out using ROA-based Route Origin Validation (ROA-ROV) as defined in <span><a href="https://rfc-editor.org/rfc/rfc6811#section-2" class="relref">Section 2</a> of [<a href="#RFC6811" class="cite xref">RFC6811</a>]</span> and SPL-ROV as defined in <span><a href="https://datatracker.ietf.org/doc/html/draft-ietf-sidrops-spl-verification-03#section-4" class="relref">Section 4</a> of [<a href="#RPKI-SPL-Verification" class="cite xref">RPKI-SPL-Verification</a>]</span>.<a href="#section-5-2" class="pilcrow">¶</a></p>
 <p id="section-5-3">An eBGP router that conforms to this specification <span class="bcp14">MUST</span> implement RPA-based AS_PATH verification procedures defined below. These procedures operates in a two-stage process:<a href="#section-5-3" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-5-4">
 <li id="section-5-4.1">
@@ -1306,13 +1308,10 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
             <p id="section-5.1-2.5.1">If RPA.origins is non-empty, perform ROA-ROV and SPL-ROV validation.<a href="#section-5.1-2.5.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-5.1-2.6">
-            <p id="section-5.1-2.6.1">If both prefix and origin checks succeed, set AS verification result is Valid.<a href="#section-5.1-2.6.1" class="pilcrow">¶</a></p>
+            <p id="section-5.1-2.6.1">If either check fails, set AS verification result is Invalid.<a href="#section-5.1-2.6.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-5.1-2.7">
-            <p id="section-5.1-2.7.1">If either check fails, set AS verification result is Invalid.<a href="#section-5.1-2.7.1" class="pilcrow">¶</a></p>
-</li>
-          <li id="section-5.1-2.8">
-            <p id="section-5.1-2.8.1">Else, set AS verification result is Unknown.<a href="#section-5.1-2.8.1" class="pilcrow">¶</a></p>
+            <p id="section-5.1-2.7.1">Else, set AS verification result is Valid.<a href="#section-5.1-2.7.1" class="pilcrow">¶</a></p>
 </li>
         </ol>
 </section>
@@ -1328,19 +1327,16 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
             <p id="section-5.2-2.1.1">Let valid_count is set equal to number of ASes with Valid. Let invalid_count is set equal to number of ASes with Invalid. Let unknown_count is set equal to number of ASes with Unknown.<a href="#section-5.2-2.1.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-5.2-2.2">
-            <p id="section-5.2-2.2.1">If valid_count == 0 AND invalid_count == 0, then the verification result is Unknown.<a href="#section-5.2-2.2.1" class="pilcrow">¶</a></p>
+            <p id="section-5.2-2.2.1">If invalid_count == 0 AND unknown_count == 0, then the verification result is Valid.<a href="#section-5.2-2.2.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-5.2-2.3">
-            <p id="section-5.2-2.3.1">Else, if invalid_count == 0 AND unknown_count == 0, then the verification result is Valid.<a href="#section-5.2-2.3.1" class="pilcrow">¶</a></p>
+            <p id="section-5.2-2.3.1">Else, if invalid_count == 0 AND valid_count &gt;= 1, then the verification result is Weakly Valid.<a href="#section-5.2-2.3.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-5.2-2.4">
-            <p id="section-5.2-2.4.1">Else, if valid_count &gt;= 1 AND invalid_count == 0, then the verification result is Weakly Valid.<a href="#section-5.2-2.4.1" class="pilcrow">¶</a></p>
+            <p id="section-5.2-2.4.1">Else, if invalid_count &gt;= 1, then the verification result is Invalid.<a href="#section-5.2-2.4.1" class="pilcrow">¶</a></p>
 </li>
           <li id="section-5.2-2.5">
-            <p id="section-5.2-2.5.1">Else, if invalid_count &gt;= 1, then the verification result is Invalid.<a href="#section-5.2-2.5.1" class="pilcrow">¶</a></p>
-</li>
-          <li id="section-5.2-2.6">
-            <p id="section-5.2-2.6.1">Else, the verification result is Unkown.<a href="#section-5.2-2.6.1" class="pilcrow">¶</a></p>
+            <p id="section-5.2-2.5.1">Else, the verification result is Unknown.<a href="#section-5.2-2.5.1" class="pilcrow">¶</a></p>
 </li>
         </ol>
 </section>
@@ -1427,7 +1423,7 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <dd class="break"></dd>
 <dt id="RPKI-RPA-Profile">[RPKI-RPA-Profile]</dt>
       <dd>
-<span class="refAuthor">Guo, Y. B.</span>, <span class="refAuthor">Wang, X.</span>, <span class="refAuthor">Xu, K.</span>, <span class="refAuthor">liu, Z.</span>, and <span class="refAuthor">L. Qi</span>, <span class="refTitle">"A Profile for Forwarding Commitments (FCs)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-guo-sidrops-fc-profile-00</span>, <time datetime="2025-02-18" class="refDate">18 February 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-guo-sidrops-fc-profile-00">https://datatracker.ietf.org/doc/html/draft-guo-sidrops-fc-profile-00</a>&gt;</span>. </dd>
+<span class="refAuthor">Guo, Y. B.</span>, <span class="refAuthor">Wang, X.</span>, <span class="refAuthor">Xu, K.</span>, <span class="refAuthor">liu, Z.</span>, and <span class="refAuthor">L. Qi</span>, <span class="refTitle">"A Profile for Route Path Authorizations (RPAs)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-guo-sidrops-rpa-profile-01</span>, <time datetime="2025-12-07" class="refDate">7 December 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-guo-sidrops-rpa-profile-01">https://datatracker.ietf.org/doc/html/draft-guo-sidrops-rpa-profile-01</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
@@ -1452,15 +1448,15 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <dd class="break"></dd>
 <dt id="RPKI-ASPA-Profile">[RPKI-ASPA-Profile]</dt>
         <dd>
-<span class="refAuthor">Azimov, A.</span>, <span class="refAuthor">Uskov, E.</span>, <span class="refAuthor">Bush, R.</span>, <span class="refAuthor">Snijders, J.</span>, <span class="refAuthor">Housley, R.</span>, and <span class="refAuthor">B. Maddison</span>, <span class="refTitle">"A Profile for Autonomous System Provider Authorization"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-sidrops-aspa-profile-20</span>, <time datetime="2025-08-18" class="refDate">18 August 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-sidrops-aspa-profile-20">https://datatracker.ietf.org/doc/html/draft-ietf-sidrops-aspa-profile-20</a>&gt;</span>. </dd>
+<span class="refAuthor">Snijders, J.</span>, <span class="refAuthor">Azimov, A.</span>, <span class="refAuthor">Uskov, E.</span>, <span class="refAuthor">Bush, R.</span>, <span class="refAuthor">Housley, R.</span>, and <span class="refAuthor">B. Maddison</span>, <span class="refTitle">"A Profile for Autonomous System Provider Authorization"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-sidrops-aspa-profile-26</span>, <time datetime="2026-04-19" class="refDate">19 April 2026</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-sidrops-aspa-profile-26">https://datatracker.ietf.org/doc/html/draft-ietf-sidrops-aspa-profile-26</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RPKI-SPL-Profile">[RPKI-SPL-Profile]</dt>
         <dd>
-<span class="refAuthor">Snijders, J.</span> and <span class="refAuthor">G. Huston</span>, <span class="refTitle">"A profile for Signed Prefix Lists for Use in the Resource Public Key Infrastructure (RPKI)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-sidrops-rpki-prefixlist-04</span>, <time datetime="2024-09-16" class="refDate">16 September 2024</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-sidrops-rpki-prefixlist-04">https://datatracker.ietf.org/doc/html/draft-ietf-sidrops-rpki-prefixlist-04</a>&gt;</span>. </dd>
+<span class="refAuthor">Snijders, J.</span> and <span class="refAuthor">G. Huston</span>, <span class="refTitle">"A profile for Signed Prefix Lists for Use in the Resource Public Key Infrastructure (RPKI)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-sidrops-rpki-prefixlist-05</span>, <time datetime="2025-12-10" class="refDate">10 December 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-sidrops-rpki-prefixlist-05">https://datatracker.ietf.org/doc/html/draft-ietf-sidrops-rpki-prefixlist-05</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RPKI-SPL-Verification">[RPKI-SPL-Verification]</dt>
       <dd>
-<span class="refAuthor">Sriram, K.</span>, <span class="refAuthor">Snijders, J.</span>, and <span class="refAuthor">D. Montgomery</span>, <span class="refTitle">"Signed Prefix List (SPL) Based Route Origin Verification and Operational Considerations"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-sidrops-spl-verification-02</span>, <time datetime="2025-06-16" class="refDate">16 June 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-sidrops-spl-verification-02">https://datatracker.ietf.org/doc/html/draft-ietf-sidrops-spl-verification-02</a>&gt;</span>. </dd>
+<span class="refAuthor">Sriram, K.</span>, <span class="refAuthor">Snijders, J.</span>, and <span class="refAuthor">D. Montgomery</span>, <span class="refTitle">"Signed Prefix List (SPL) Based Route Origin Verification and Operational Considerations"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-sidrops-spl-verification-03</span>, <time datetime="2025-12-16" class="refDate">16 December 2025</time>, <span>&lt;<a href="https://datatracker.ietf.org/doc/html/draft-ietf-sidrops-spl-verification-03">https://datatracker.ietf.org/doc/html/draft-ietf-sidrops-spl-verification-03</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>

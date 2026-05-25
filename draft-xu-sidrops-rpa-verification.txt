@@ -5,11 +5,11 @@
 SIDR Operations                                                    K. Xu
 Internet-Draft                                       Tsinghua University
 Intended status: Standards Track                                S. Jiang
-Expires: 4 June 2026                                              Y. Guo
+Expires: 26 November 2026                                         Y. Guo
                                                  Zhongguancun Laboratory
                                                                  X. Wang
                                                      Tsinghua University
-                                                         1 December 2025
+                                                             25 May 2026
 
 
    BGP AS_PATH Verification Based on Route Path Authorizations (RPA)
@@ -60,11 +60,11 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 4 June 2026.
+   This Internet-Draft will expire on 26 November 2026.
 
 Copyright Notice
 
-   Copyright (c) 2025 IETF Trust and the persons identified as the
+   Copyright (c) 2026 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -150,7 +150,7 @@ Table of Contents
       the path is validated as VALID by RPA, while all other ASes yield
       an UNKNOWN verification result.
 
-   *  *VRPP*: Validated RPA Payload (see Section 4).
+   *  *VRPP*: Validated RPA Payload.
 
 4.  Route Path Authorizations (RPA)
 
@@ -240,12 +240,9 @@ Table of Contents
    5.  If RPA.origins is non-empty, perform ROA-ROV and SPL-ROV
        validation.
 
-   6.  If both prefix and origin checks succeed, set AS verification
-       result is Valid.
+   6.  If either check fails, set AS verification result is Invalid.
 
-   7.  If either check fails, set AS verification result is Invalid.
-
-   8.  Else, set AS verification result is Unknown.
+   7.  Else, set AS verification result is Valid.
 
 5.2.  Path-Level Verification Algorithm
 
@@ -259,19 +256,16 @@ Table of Contents
        invalid_count is set equal to number of ASes with Invalid.  Let
        unknown_count is set equal to number of ASes with Unknown.
 
-   2.  If valid_count == 0 AND invalid_count == 0, then the verification
-       result is Unknown.
-
-   3.  Else, if invalid_count == 0 AND unknown_count == 0, then the
+   2.  If invalid_count == 0 AND unknown_count == 0, then the
        verification result is Valid.
 
-   4.  Else, if valid_count >= 1 AND invalid_count == 0, then the
+   3.  Else, if invalid_count == 0 AND valid_count >= 1, then the
        verification result is Weakly Valid.
 
-   5.  Else, if invalid_count >= 1, then the verification result is
+   4.  Else, if invalid_count >= 1, then the verification result is
        Invalid.
 
-   6.  Else, the verification result is Unkown.
+   5.  Else, the verification result is Unknown.
 
 5.3.  Mitigation Policy
 
@@ -353,10 +347,11 @@ Table of Contents
 
    [RPKI-RPA-Profile]
               Guo, Y. B., Wang, X., Xu, K., liu, Z., and L. Qi, "A
-              Profile for Forwarding Commitments (FCs)", Work in
-              Progress, Internet-Draft, draft-guo-sidrops-fc-profile-00,
-              18 February 2025, <https://datatracker.ietf.org/doc/html/
-              draft-guo-sidrops-fc-profile-00>.
+              Profile for Route Path Authorizations (RPAs)", Work in
+              Progress, Internet-Draft, draft-guo-sidrops-rpa-profile-
+              01, 7 December 2025,
+              <https://datatracker.ietf.org/doc/html/draft-guo-sidrops-
+              rpa-profile-01>.
 
 9.2.  Informative References
 
@@ -377,28 +372,28 @@ Table of Contents
               December 2022, <https://www.rfc-editor.org/rfc/rfc9324>.
 
    [RPKI-ASPA-Profile]
-              Azimov, A., Uskov, E., Bush, R., Snijders, J., Housley,
+              Snijders, J., Azimov, A., Uskov, E., Bush, R., Housley,
               R., and B. Maddison, "A Profile for Autonomous System
               Provider Authorization", Work in Progress, Internet-Draft,
-              draft-ietf-sidrops-aspa-profile-20, 18 August 2025,
+              draft-ietf-sidrops-aspa-profile-26, 19 April 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-sidrops-
-              aspa-profile-20>.
+              aspa-profile-26>.
 
    [RPKI-SPL-Profile]
               Snijders, J. and G. Huston, "A profile for Signed Prefix
               Lists for Use in the Resource Public Key Infrastructure
               (RPKI)", Work in Progress, Internet-Draft, draft-ietf-
-              sidrops-rpki-prefixlist-04, 16 September 2024,
+              sidrops-rpki-prefixlist-05, 10 December 2025,
               <https://datatracker.ietf.org/doc/html/draft-ietf-sidrops-
-              rpki-prefixlist-04>.
+              rpki-prefixlist-05>.
 
    [RPKI-SPL-Verification]
               Sriram, K., Snijders, J., and D. Montgomery, "Signed
               Prefix List (SPL) Based Route Origin Verification and
               Operational Considerations", Work in Progress, Internet-
-              Draft, draft-ietf-sidrops-spl-verification-02, 16 June
+              Draft, draft-ietf-sidrops-spl-verification-03, 16 December
               2025, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              sidrops-spl-verification-02>.
+              sidrops-spl-verification-03>.
 
 Acknowledgments
 
