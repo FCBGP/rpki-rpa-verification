@@ -56,7 +56,7 @@ normative:
   RFC8205: # BGPsec
   RFC9582:
   RFC9234:
-  RPKI-RPA-Profile: I-D.guo-sidrops-fc-profile # I-D.guo-sidrops-rpa-profile, # TODO: modify here before submit.
+  RPKI-RPA-Profile: I-D.guo-sidrops-rpa-profile
 
 informative:
   RFC7908:
@@ -98,7 +98,7 @@ The definitions and semantics of Route Path Authorizations (RPA) provided in {{R
 
 - **Route is ineligible**: The term has the same meaning as in {{RFC4271}}, i.e., "route is ineligible to be installed in Loc-RIB and will be excluded from the next phase of route selection."
 - **Weakly Valid**: This is one of the verification status of using RPA objects to verify AS_PATH, indicating that at least one AS in the path is validated as VALID by RPA, while all other ASes yield an UNKNOWN verification result.
-- **VRPP**: Validated RPA Payload (see {{RoutePathAuthorizations}}).
+- **VRPP**: Validated RPA Payload.
 
 # Route Path Authorizations (RPA) {#RoutePathAuthorizations}
 
@@ -132,9 +132,8 @@ The verification algorithm is applied to each individual AS in the AS_PATH of th
 3. Perform authorized neighbors matching against the AS_PATH. If RPA.previousHops or RPA.nextHops do not match the AS_PATH context, set AS verification result is Invalid.
 4. If RPA.prefixes is non-empty, perform prefix matching with the UPDATE message.
 5. If RPA.origins is non-empty, perform ROA-ROV and SPL-ROV validation.
-6. If both prefix and origin checks succeed, set AS verification result is Valid.
-7. If either check fails, set AS verification result is Invalid.
-8. Else, set AS verification result is Unknown.
+6. If either check fails, set AS verification result is Invalid.
+7. Else, set AS verification result is Valid.
 
 
 ## Path-Level Verification Algorithm
@@ -142,12 +141,10 @@ The verification algorithm is applied to each individual AS in the AS_PATH of th
 This process determines whether the sequence of ASes in the AS_PATH attribute conforms to the collectively declared routing paths published in RPAs. By aggregating the per-AS verification results, the algorithm computes a comprehensive path verification result for each received BGP route.
 
 1. Let valid_count is set equal to number of ASes with Valid. Let invalid_count is set equal to number of ASes with Invalid. Let unknown_count is set equal to number of ASes with Unknown.
-2. If valid_count == 0 AND invalid_count == 0, then the verification result is Unknown.
-3. Else, if invalid_count == 0 AND unknown_count == 0, then the verification result is Valid.
-4. Else, if valid_count >= 1 AND invalid_count == 0, then the verification result is Weakly Valid.
-5. Else, if invalid_count >= 1, then the verification result is Invalid.
-6. Else, the verification result is Unkown.
-
+2. If invalid_count == 0 AND unknown_count == 0, then the verification result is Valid.
+3. Else, if invalid_count == 0 AND valid_count >= 1, then the verification result is Weakly Valid.
+4. Else, if invalid_count >= 1, then the verification result is Invalid.
+5. Else, the verification result is Unknown.
 
 ## Mitigation Policy {#MitigationPolicy}
 
