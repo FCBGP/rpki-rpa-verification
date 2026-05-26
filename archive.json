@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2026-05-24T04:13:04.446600+00:00",
+  "timestamp": "2026-05-26T04:09:45.396233+00:00",
   "repo": "FCBGP/rpki-rpa-verification",
   "labels": [
     {
@@ -175,7 +175,7 @@
       "labels": [],
       "body": "",
       "createdAt": "2025-12-01T02:36:54Z",
-      "updatedAt": "2025-12-01T02:39:33Z",
+      "updatedAt": "2026-05-25T01:57:39Z",
       "baseRepository": "FCBGP/rpki-rpa-verification",
       "baseRefName": "main",
       "baseRefOid": "3593dc3fef69a22aec95d587f34c2fee9dab12a6",
@@ -187,6 +187,34 @@
       "mergedBy": "shenglinwh",
       "mergeCommit": {
         "oid": "866b67445cc5e574bea1f0f4b3575b8bd64e217f"
+      },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 6,
+      "id": "PR_kwDONjZfUM7e6Xfz",
+      "title": "Update draft-xu-sidrops-rpa-verification.md",
+      "url": "https://github.com/FCBGP/rpki-rpa-verification/pull/6",
+      "state": "MERGED",
+      "author": "shenglinwh",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2026-05-25T05:05:27Z",
+      "updatedAt": "2026-05-25T05:08:11Z",
+      "baseRepository": "FCBGP/rpki-rpa-verification",
+      "baseRefName": "main",
+      "baseRefOid": "866b67445cc5e574bea1f0f4b3575b8bd64e217f",
+      "headRepository": "FCBGP/rpki-rpa-verification",
+      "headRefName": "rpa-v02",
+      "headRefOid": "fce5ba5f72deac4758742b850fad61dc682c12c1",
+      "closedAt": "2026-05-25T05:08:11Z",
+      "mergedAt": "2026-05-25T05:08:11Z",
+      "mergedBy": "shenglinwh",
+      "mergeCommit": {
+        "oid": "6d56ddaac8fcd7e3faaa2a96f9cc02a2cd621d06"
       },
       "comments": [],
       "reviews": []
