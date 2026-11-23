@@ -5,11 +5,11 @@
 SIDR Operations                                                    K. Xu
 Internet-Draft                                       Tsinghua University
 Intended status: Standards Track                                S. Jiang
-Expires: 26 November 2026                                         Y. Guo
+Expires: 27 May 2027                                              Y. Guo
                                                  Zhongguancun Laboratory
                                                                  X. Wang
                                                      Tsinghua University
-                                                             25 May 2026
+                                                        23 November 2026
 
 
    BGP AS_PATH Verification Based on Route Path Authorizations (RPA)
@@ -21,11 +21,19 @@ Abstract
    The Route Path Authorizations (RPA) is an RPKI object that attests to
    the routing paths description which an Autonomous System (AS) would
    obey in Border Gateway Protocol (BGP) route propagation.  This
-   document specifies an RPA-based AS Path Verification methodology to
-   mitigate, even solve, AS Path forgery and route leaks.  This document
-   also explains the various BGP security threats that RPA can help
-   address and provides operational considerations associated with RPA
-   deployment.
+   document specifies procedures for validating the AS_PATH attribute in
+   BGP UPDATE messages against validated RPA objects.  The procedures
+   determine whether the AS sequence represented by an AS_PATH is
+   consistent with the route-propagation authorizations declared by the
+   corresponding ASes.  The document defines per-AS checks, path-level
+   result aggregation, and considerations for applying verification
+   results to route processing.  RPA-based verification complements, but
+   does not replace, Route Origin Validation (ROV), Signed Prefix List
+   (SPL) validation, Autonomous System Provider Authorization (ASPA), or
+   BGPsec.  In particular, an RPA verification result is an
+   authorization-consistency result and does not, by itself, constitute
+   cryptographic proof that a route traversed every AS in the advertised
+   path.
 
 About This Document
 
@@ -60,7 +68,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 26 November 2026.
+   This Internet-Draft will expire on 27 May 2027.
 
 Copyright Notice
 
@@ -349,9 +357,8 @@ Table of Contents
               Guo, Y. B., Wang, X., Xu, K., liu, Z., and L. Qi, "A
               Profile for Route Path Authorizations (RPAs)", Work in
               Progress, Internet-Draft, draft-guo-sidrops-rpa-profile-
-              01, 7 December 2025,
-              <https://datatracker.ietf.org/doc/html/draft-guo-sidrops-
-              rpa-profile-01>.
+              02, 7 June 2026, <https://datatracker.ietf.org/doc/html/
+              draft-guo-sidrops-rpa-profile-02>.
 
 9.2.  Informative References
 
@@ -375,9 +382,9 @@ Table of Contents
               Snijders, J., Azimov, A., Uskov, E., Bush, R., Housley,
               R., and B. Maddison, "A Profile for Autonomous System
               Provider Authorization", Work in Progress, Internet-Draft,
-              draft-ietf-sidrops-aspa-profile-26, 19 April 2026,
+              draft-ietf-sidrops-aspa-profile-31, 10 November 2026,
               <https://datatracker.ietf.org/doc/html/draft-ietf-sidrops-
-              aspa-profile-26>.
+              aspa-profile-31>.
 
    [RPKI-SPL-Profile]
               Snijders, J. and G. Huston, "A profile for Signed Prefix
@@ -391,9 +398,9 @@ Table of Contents
               Sriram, K., Snijders, J., and D. Montgomery, "Signed
               Prefix List (SPL) Based Route Origin Verification and
               Operational Considerations", Work in Progress, Internet-
-              Draft, draft-ietf-sidrops-spl-verification-03, 16 December
-              2025, <https://datatracker.ietf.org/doc/html/draft-ietf-
-              sidrops-spl-verification-03>.
+              Draft, draft-ietf-sidrops-spl-verification-04, 17 June
+              2026, <https://datatracker.ietf.org/doc/html/draft-ietf-
+              sidrops-spl-verification-04>.
 
 Acknowledgments
 
