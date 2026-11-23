@@ -71,7 +71,7 @@ informative:
 
 --- abstract
 
-The Route Path Authorizations (RPA) is an RPKI object that attests to the routing paths description which an Autonomous System (AS) would obey in Border Gateway Protocol (BGP) route propagation. This document specifies an RPA-based AS Path Verification methodology to mitigate, even solve, AS Path forgery and route leaks. This document also explains the various BGP security threats that RPA can help address and provides operational considerations associated with RPA deployment.
+The Route Path Authorizations (RPA) is an RPKI object that attests to the routing paths description which an Autonomous System (AS) would obey in Border Gateway Protocol (BGP) route propagation. This document specifies procedures for validating the AS_PATH attribute in BGP UPDATE messages against validated RPA objects. The procedures determine whether the AS sequence represented by an AS_PATH is consistent with the route-propagation authorizations declared by the corresponding ASes. The document defines per-AS checks, path-level result aggregation, and considerations for applying verification results to route processing. RPA-based verification complements, but does not replace, Route Origin Validation (ROV), Signed Prefix List (SPL) validation, Autonomous System Provider Authorization (ASPA), or BGPsec. In particular, an RPA verification result is an authorization-consistency result and does not, by itself, constitute cryptographic proof that a route traversed every AS in the advertised path.
 
 --- middle
 
